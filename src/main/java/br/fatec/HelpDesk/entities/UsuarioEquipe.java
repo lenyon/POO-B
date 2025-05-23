@@ -16,10 +16,10 @@ public class UsuarioEquipe implements Serializable {
 
     @Id
     @SequenceGenerator(
-            name = "SEQ-USUARIO-EQUIPE",
+            name = "SEQ_USUARIO_EQUIPE",
             sequenceName = "public.seq_usuario_equipe",
             allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "SEQ-USUARIO-EQUIPE")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO_EQUIPE")
     private Long id;
 
     @ManyToOne

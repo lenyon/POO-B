@@ -19,7 +19,7 @@ public class Categoria implements Serializable {
             name = "SEQ-CATEGORIA",
             sequenceName = "public.seq-categoria",
             allocationSize = 1)
-    @GeneratedValue (strategy = GenerationType.IDENTITY, generator = "SEQ-CATEGORIA")
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "SEQ-CATEGORIA")
     private Long id;
 
     @Column (name = "servico", nullable = false, length = 50)

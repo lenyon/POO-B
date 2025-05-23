@@ -19,7 +19,7 @@ public class Perfil implements Serializable {
             name = "SEQ-PERFIL",
             sequenceName = "public.seq-perfil",
             allocationSize = 1)
-    @GeneratedValue (strategy = GenerationType.IDENTITY, generator = "SEQ-PERFIL")
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "SEQ-PERFIL")
     private Long id;
 
     @Column (name = "Perfil", nullable = false, length = 50)

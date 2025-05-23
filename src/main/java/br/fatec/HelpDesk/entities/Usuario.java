@@ -21,7 +21,7 @@ public class Usuario implements Serializable {
             name = "SEQ-USUARIO",
             sequenceName = "public.seq-usuario",
             allocationSize = 1)
-    @GeneratedValue (strategy = GenerationType.IDENTITY, generator = "SEQ-USUARIO")
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "SEQ-USUARIO")
     private Long id;
 
     @Column (name = "nome", nullable = false, length = 255)
@@ -44,6 +44,8 @@ public class Usuario implements Serializable {
             insertable = true, updatable = true)
     private Perfil perfil;
 
+
+    //Possibilidade de alteracao para UsuarioEquipe em vez de Equipe para manter persistencia de dados
     @OneToMany
     @JoinTable(name = "usuario_equipe", schema = "public",
                     joinColumns = @JoinColumn(name = "id_usuario"),

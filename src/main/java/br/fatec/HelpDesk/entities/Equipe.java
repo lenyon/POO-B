@@ -19,7 +19,7 @@ public class Equipe implements Serializable {
             name = "SEQ-EQUIPE",
             sequenceName = "public.seq-equipe",
             allocationSize = 1)
-    @GeneratedValue (strategy = GenerationType.IDENTITY, generator = "SEQ-EQUIPE")
+    @GeneratedValue (strategy = GenerationType.SEQUENCE, generator = "SEQ-EQUIPE")
     private Long id;
 
     @Column (name = "Equipe", nullable = false, length = 50)

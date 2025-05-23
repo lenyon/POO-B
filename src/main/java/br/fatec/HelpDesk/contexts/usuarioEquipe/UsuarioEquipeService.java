@@ -22,7 +22,21 @@ public class UsuarioEquipeService {
        if (usuario != null && dto != null) {
            List<Equipe> equipes = new ArrayList<>();
            dto.forEach(equipe -> equipes.add(EquipeDTO.toEquipe(equipe)));
-           usuario.setEquipes(equipes);
+
+           List<Equipe> novaListaquipe =new ArrayList<>();
+           //manter as equipes existentes
+           for(Equipe usuarioEquipe : usuario.getEquipes()) {
+               for (Equipe equipeNova : equipes) {
+                   if (usuarioEquipe.getId().equals(equipeNova.getId())) {
+                        novaListaquipe.add(usuarioEquipe);
+                        equipes.remove(equipeNova);
+                   }
+               }
+           }
+
+           novaListaquipe.addAll(equipes);
+
+           usuario.setEquipes(novaListaquipe);
            return usuarioService.cadastrar(usuario);
        }
        return null;

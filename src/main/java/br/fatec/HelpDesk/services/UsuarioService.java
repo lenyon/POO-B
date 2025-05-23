@@ -15,7 +15,7 @@ public class UsuarioService {
 
     public Usuario findById (Long id) {
         if(id != null) {
-            usuarioRepository.findById(id).orElse(null);
+            return usuarioRepository.findById(id).orElse(null);
         }
         return null;
     }

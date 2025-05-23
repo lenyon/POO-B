@@ -2,14 +2,17 @@ package br.fatec.HelpDesk.entities;
 
 import br.fatec.HelpDesk.enums.TipoStatus;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.security.SecureRandomParameters;
 
 @Entity
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Table(name = "status", schema = "public")
 public class Status implements Serializable {
 

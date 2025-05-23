@@ -5,6 +5,8 @@ import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -41,6 +43,12 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "id_perfil", referencedColumnName = "id",
             insertable = true, updatable = true)
     private Perfil perfil;
+
+    @OneToMany
+    @JoinTable(name = "usuario_equipe", schema = "public",
+                    joinColumns = @JoinColumn(name = "id_usuario"),
+                    inverseJoinColumns = @JoinColumn(name = "id_equipe"))
+    private Collection<Equipe> equipes;
 
 
 }

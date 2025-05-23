@@ -5,6 +5,8 @@ import br.fatec.HelpDesk.entities.Perfil;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public record EquipeDTO(
 
@@ -34,6 +36,17 @@ public record EquipeDTO(
             return equipe;
         }
         return  null;
+    }
+
+    public static List<EquipeDTO> valueAll(List<Equipe> equipes) {
+        if (equipes != null && !equipes.isEmpty()) {
+            List<EquipeDTO> dtos = new ArrayList<>();
+            equipes.forEach(equipe ->
+                    dtos.add(valueof(equipe))
+            );
+            return dtos;
+        }
+        return null;
     }
 
 }

@@ -11,7 +11,6 @@ public record UsuarioDTO(
         Long id,
         String nome,
         String email,
-        String senha,
         String cargo,
         String telefone,
         PerfilDTO perfil
@@ -27,7 +26,6 @@ public record UsuarioDTO(
                     usuario.getId(),
                     usuario.getNome(),
                     usuario.getEmail(),
-                    usuario.getSenha(),
                     usuario.getCargo(),
                     usuario.getTelefone(),
                     PerfilDTO.valueof(usuario.getPerfil())
@@ -42,7 +40,6 @@ public record UsuarioDTO(
             usuario.setId(usuarioDTO.id);
             usuario.setNome(usuarioDTO.nome);
             usuario.setEmail(usuarioDTO.email);
-            usuario.setSenha(usuarioDTO.senha);
             usuario.setCargo(usuarioDTO.cargo);
             usuario.setTelefone(usuarioDTO.telefone);
             usuario.setPerfil(PerfilDTO.toPerfil(usuarioDTO.perfil));

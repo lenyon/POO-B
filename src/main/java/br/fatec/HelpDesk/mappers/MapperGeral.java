@@ -4,12 +4,16 @@ package br.fatec.HelpDesk.mappers;
 import br.fatec.HelpDesk.dtos.CategoriaDTO;
 import br.fatec.HelpDesk.dtos.EquipeDTO;
 import br.fatec.HelpDesk.dtos.PerfilDTO;
+import br.fatec.HelpDesk.dtos.UsuarioDTO;
 import br.fatec.HelpDesk.entities.Categoria;
 import br.fatec.HelpDesk.entities.Equipe;
 import br.fatec.HelpDesk.entities.Perfil;
+import br.fatec.HelpDesk.entities.Usuario;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MapperGeral implements Serializable {
 
@@ -18,7 +22,7 @@ public class MapperGeral implements Serializable {
 
     public static CategoriaDTO mapCategoriaToDTO(Categoria categoria) {
         return categoria != null
-                ? CategoriaDTO.valueOf(categoria)
+                ? CategoriaDTO.valueof(categoria)
                 : null;
     }
 
@@ -28,7 +32,7 @@ public class MapperGeral implements Serializable {
 
     public static EquipeDTO mapEquipeToDTO(Equipe equipe) {
         return equipe != null
-                ? EquipeDTO.valueOf(equipe)
+                ? EquipeDTO.valueof(equipe)
                 : null;
     }
 
@@ -38,8 +42,7 @@ public class MapperGeral implements Serializable {
 
     public static PerfilDTO mapPerfilToDTO(Perfil perfil) {
         return perfil != null
-                ? PerfilDTO.valueOf(perfil)
-                : null;
+                ? PerfilDTO.valueof(perfil) : null;
     }
 
     public static Perfil mapDtoToPerfil (PerfilDTO dto) {
@@ -47,5 +50,37 @@ public class MapperGeral implements Serializable {
                 ? PerfilDTO.toPerfil(dto)
                 : null;
     }
+
+    public static List<PerfilDTO> mapListPerfiltoDTO(List<Perfil> listaPerfil) {
+        if (listaPerfil != null && !listaPerfil.isEmpty()) {
+            List<PerfilDTO> dtos = new ArrayList<>();
+            listaPerfil.forEach(perfil -> {
+                PerfilDTO dto = PerfilDTO.valueof(perfil);
+                dtos.add(dto);
+            });
+            return dtos;
+        }
+        return null;
+    }
+
+    public static UsuarioDTO mapUsuarioToDTO (Usuario usuario) {
+        return usuario !=null
+                ? UsuarioDTO.valueof(usuario) : null;
+    }
+
+    public static Usuario mapDTOToUsuario (UsuarioDTO dto) {
+        return  dto != null ? UsuarioDTO.toUsuario(dto) : null;
+    }
+
+    public static List<UsuarioDTO> mapListUsuarioToDTO (List<Usuario> usuarios) {
+        if (usuarios != null && !usuarios.isEmpty()) {
+            List<UsuarioDTO> dtos = new ArrayList<>();
+            usuarios.forEach(usuario -> dtos.add(UsuarioDTO.valueof(usuario)));
+            return dtos;
+        }
+        return null;
+    }
+
+
 
 }

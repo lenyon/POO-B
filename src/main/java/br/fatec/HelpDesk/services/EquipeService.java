@@ -8,6 +8,8 @@ import br.fatec.HelpDesk.repositories.PerfilRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EquipeService {
 
@@ -18,5 +20,9 @@ public class EquipeService {
         Equipe equipe = new Equipe();
         equipe.setEquipe(nomeEquipe);
         return equipeRepository.save(equipe);
+    }
+
+    public List<Equipe> findAll() {
+        return equipeRepository.findAll();
     }
 }

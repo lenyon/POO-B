@@ -1,8 +1,10 @@
 package br.fatec.HelpDesk.controllers;
 
 
+import br.fatec.HelpDesk.contexts.usuarioEquipe.UsuarioEquipeDTO;
 import br.fatec.HelpDesk.dtos.PerfilDTO;
 import br.fatec.HelpDesk.entities.Perfil;
+import br.fatec.HelpDesk.entities.Usuario;
 import br.fatec.HelpDesk.mappers.MapperGeral;
 import br.fatec.HelpDesk.services.PerfilService;
 import org.apache.catalina.mapper.Mapper;
@@ -30,6 +32,13 @@ public class PerfilController {
     public @ResponseBody ResponseEntity<List<PerfilDTO>> all() {
         List<Perfil> listaPerfil = perfilService.findAll();
         return ResponseEntity.ok().body(MapperGeral.mapListPerfiltoDTO(listaPerfil));
+    }
+
+    @GetMapping("/find/{id}")
+    public @ResponseBody ResponseEntity<PerfilDTO> findById (
+            @PathVariable Long id) {
+        Perfil perfil = perfilService.findById(id);
+        return ResponseEntity.ok().body(PerfilDTO.valueof(perfil));
     }
 
 }

@@ -40,6 +40,16 @@ public class MapperGeral implements Serializable {
         return dto != null ? EquipeDTO.toEquipe(dto) : null;
     }
 
+    public static List<EquipeDTO> mapListEquipeToDTO (List<Equipe> listaEquipes) {
+        if (listaEquipes != null && !listaEquipes.isEmpty()) {
+            List<EquipeDTO> dtos = new ArrayList<>();
+            listaEquipes.forEach(equipe -> dtos.add(EquipeDTO.valueof(equipe)));
+            return dtos;
+        }
+        return null;
+    }
+
+
     public static PerfilDTO mapPerfilToDTO(Perfil perfil) {
         return perfil != null
                 ? PerfilDTO.valueof(perfil) : null;

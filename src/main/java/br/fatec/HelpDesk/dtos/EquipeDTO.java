@@ -2,6 +2,8 @@ package br.fatec.HelpDesk.dtos;
 
 import br.fatec.HelpDesk.entities.Equipe;
 import br.fatec.HelpDesk.entities.Perfil;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -10,7 +12,10 @@ import java.util.List;
 
 public record EquipeDTO(
 
+        @NotNull(message = "Equipe não pode ser nulo")
         Long id,
+
+        @NotBlank(message = "Nome equipe é um campo obrigatório.")
         String equipe
 
 ) implements Serializable {

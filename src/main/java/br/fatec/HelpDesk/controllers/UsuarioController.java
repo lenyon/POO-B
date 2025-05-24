@@ -1,6 +1,7 @@
 package br.fatec.HelpDesk.controllers;
 
 
+import br.fatec.HelpDesk.contexts.usuarioEquipe.UsuarioEquipeDTO;
 import br.fatec.HelpDesk.dtos.CategoriaDTO;
 import br.fatec.HelpDesk.dtos.PerfilDTO;
 import br.fatec.HelpDesk.dtos.UsuarioDTO;
@@ -57,4 +58,11 @@ public class UsuarioController {
         return  ResponseEntity.ok().body(MapperGeral.mapListUsuarioToDTO(usuarios));
     }
 
+
+    @GetMapping("/find/{id}")
+    public @ResponseBody ResponseEntity<UsuarioDTO> findById (
+            @PathVariable Long id) {
+        Usuario usuario = usuarioService.findById(id);
+        return ResponseEntity.ok().body(UsuarioDTO.valueof(usuario));
+    }
 }

@@ -1,5 +1,6 @@
 package br.fatec.HelpDesk.services;
 
+import br.fatec.HelpDesk.entities.Equipe;
 import br.fatec.HelpDesk.entities.Usuario;
 import br.fatec.HelpDesk.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,10 @@ public class UsuarioService {
             return usuarioRepository.findById(id).orElse(null);
         }
         return null;
+    }
+
+    public List<Usuario> findAllById (List<Long> ids) {
+        return usuarioRepository.findAllById(ids);
     }
 
     public Usuario cadastrar(Usuario usuario) {

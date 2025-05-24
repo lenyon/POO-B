@@ -1,12 +1,15 @@
 package br.fatec.HelpDesk.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @Entity
@@ -46,11 +49,15 @@ public class Usuario implements Serializable {
 
 
     //Possibilidade de alteracao para UsuarioEquipe em vez de Equipe para manter persistencia de dados
-    @OneToMany
-    @JoinTable(name = "usuario_equipe", schema = "public",
-                    joinColumns = @JoinColumn(name = "id_usuario"),
-                    inverseJoinColumns = @JoinColumn(name = "id_equipe"))
-    private Collection<Equipe> equipes;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<UsuarioEquipe> usuarioEquipes = new ArrayList<>();
+
+    public List<Equipe> getEquipes () {
+        return usuarioEquipes.stream().
+                map(UsuarioEquipe::getEquipe)
+                .collect(Collectors.toList());
+    }
 
 
 }

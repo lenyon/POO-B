@@ -1,10 +1,15 @@
 package br.fatec.HelpDesk.contexts.usuarioEquipe;
 
+import br.fatec.HelpDesk.contexts.abrirTicket.AbrirTicketDTO;
 import br.fatec.HelpDesk.dtos.EquipeDTO;
 import br.fatec.HelpDesk.entities.Equipe;
+import br.fatec.HelpDesk.entities.Ticket;
 import br.fatec.HelpDesk.entities.Usuario;
+import br.fatec.HelpDesk.exceptions.GlobalExceptionHandler;
 import br.fatec.HelpDesk.repositories.UsuarioRepository;
 import br.fatec.HelpDesk.services.EquipeService;
+import br.fatec.HelpDesk.services.TicketService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +28,11 @@ public class UsuarioEquipeController {
 
     @PostMapping("/add/{email}")
     public @ResponseBody ResponseEntity<UsuarioEquipeDTO> addEquipes (
-            @PathVariable String email,
-            @RequestBody List<EquipeDTO> dto) {
+            @PathVariable  String email ,
+            @RequestBody @Valid List< EquipeDTO> dto) {
 
         Usuario usuario = usuarioEquipeService.addEquipes(email, dto);
-        return ResponseEntity.ok().body(UsuarioEquipeDTO.valueof(usuario));
+            return ResponseEntity.ok().body(UsuarioEquipeDTO.valueof(usuario));
     }
 
     @GetMapping("/find/{email}")

@@ -1,11 +1,14 @@
 package br.fatec.HelpDesk.contexts.abrirTicket;
 
+import br.fatec.HelpDesk.contexts.usuarioEquipe.UsuarioEquipeDTO;
 import br.fatec.HelpDesk.entities.Equipe;
 import br.fatec.HelpDesk.entities.Status;
 import br.fatec.HelpDesk.entities.Ticket;
 import br.fatec.HelpDesk.entities.Usuario;
 import br.fatec.HelpDesk.enums.TipoStatus;
+import br.fatec.HelpDesk.repositories.EquipeRepository;
 import br.fatec.HelpDesk.repositories.TicketRepository;
+import br.fatec.HelpDesk.repositories.UsuarioRepository;
 import br.fatec.HelpDesk.services.EquipeService;
 import br.fatec.HelpDesk.services.TicketService;
 import br.fatec.HelpDesk.services.UsuarioService;
@@ -14,6 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class AbrirTicketService {
@@ -29,6 +34,7 @@ public class AbrirTicketService {
 
 
     public Ticket abrirTicket (AbrirTicketDTO dto) {
+
         Usuario solicitante = usuarioService.findById(dto.id_usuario());
         Equipe equipe = equipeService.findById(dto.id_equipe());
 
@@ -40,11 +46,16 @@ public class AbrirTicketService {
             ticket.setDescricao(dto.descricao());
             ticket.setDataAbertura(LocalDateTime.now());
 
-            Status status = new Status(TipoStatus.AGUARDANDO_ATENDIMENTO);
-            ticket.setUltimoStatus(status);
+            ticket.setUltimoStatus(
+                    new Status(TipoStatus.AGUARDANDO_ATENDIMENTO));
 
             return ticketService.salvar(ticket);
         }
         return null;
     }
+
+
+
+
+
 }

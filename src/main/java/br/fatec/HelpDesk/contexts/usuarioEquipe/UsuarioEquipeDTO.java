@@ -3,6 +3,8 @@ package br.fatec.HelpDesk.contexts.usuarioEquipe;
 import br.fatec.HelpDesk.dtos.UsuarioDTO;
 import br.fatec.HelpDesk.entities.Usuario;
 import br.fatec.HelpDesk.entities.UsuarioEquipe;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -22,18 +24,18 @@ public record UsuarioEquipeDTO(
     public static UsuarioEquipeDTO valueof(Usuario usuario) {
         if (usuario != null) {
 
-            List<String> equipes = new ArrayList<>();
-            if (usuario.getEquipes() != null && !usuario.getEquipes().isEmpty())
+            if (usuario.getEquipes() != null && !usuario.getEquipes().isEmpty()) {
+                List<String> equipes = new ArrayList<>();
                 usuario.getEquipes().forEach(equipe -> equipes.add(equipe.getEquipe()));
 
-            return  new UsuarioEquipeDTO(
-                    usuario.getNome(),
-                    usuario.getEmail(),
-                    usuario.getPerfil().getPerfil(),
-                    equipes
-            );
-        }
-        return null;
+                return new UsuarioEquipeDTO(
+                        usuario.getNome(),
+                        usuario.getEmail(),
+                        usuario.getPerfil().getPerfil(),
+                        equipes
+                );
+            } else return null;
+        } else return null;
     }
 
 

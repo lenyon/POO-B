@@ -1,5 +1,6 @@
 package br.fatec.HelpDesk.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -22,12 +23,18 @@ public class UsuarioEquipe implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO_EQUIPE")
     private Long id;
 
+    @Column (name = "ativo", length = 350)
+    private boolean ativo;
+
     @ManyToOne
     @JoinColumn(name = "id_usuario", referencedColumnName = "id")
+    @JsonBackReference
     private Usuario usuario;
 
     @ManyToOne
     @JoinColumn(name = "id_equipe", referencedColumnName = "id")
     private Equipe equipe;
+
+
 
 }

@@ -29,4 +29,8 @@ public class EquipeService {
     public Equipe findById (Long id) {
         return equipeRepository.findById(id).orElse(null);
     }
+
+    public List<Equipe> findAllById (List<Long> ids) {
+        return equipeRepository.findAllById(ids);
+    }
 }
